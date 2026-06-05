@@ -13,9 +13,15 @@
 	border: 0;
 	outline: none;
 	background: transparent;
-	--pager-top-inset: calc(env(safe-area-inset-top, 0px) + 54px);
+	--nav-bar-h: clamp(50px, 7vw, 54px);
+	--pager-controls-h: clamp(50px, 9vw, 55px);
+	--pager-nav-gap: clamp(12px, 2vh, 18px);
+	--pager-bottom-gap: clamp(12px, 2.4vh, 24px);
+	--pager-top-inset: calc(env(safe-area-inset-top, 0px) + var(--nav-bar-h) + var(--pager-nav-gap));
+	--pager-bottom-inset: calc(
+		var(--pager-bottom-gap) + var(--pager-controls-h) + env(safe-area-inset-bottom, 0px)
+	);
 	--pager-edge-fade: 100px;
-	--nav-bar-h: 54px;
 }
 
 .pager-shell::before,
@@ -93,16 +99,23 @@
 	contain: style;
 	overflow-anchor: none;
 	touch-action: pan-y pinch-zoom;
-	padding-top: calc(var(--pager-top-inset) + 0.5rem);
-	padding-bottom: calc(1.5rem + 58px + 1.5rem + env(safe-area-inset-bottom, 0px));
-	scroll-padding-top: calc(var(--pager-top-inset) + 0.5rem);
-	scroll-padding-bottom: calc(1.5rem + 58px + 1.5rem + env(safe-area-inset-bottom, 0px));
+	padding-top: calc(var(--pager-top-inset) + 0.25rem);
+	padding-bottom: calc(var(--pager-bottom-inset) + var(--pager-bottom-gap));
+	scroll-padding-top: calc(var(--pager-top-inset) + 0.25rem);
+	scroll-padding-bottom: calc(var(--pager-bottom-inset) + var(--pager-bottom-gap));
 	border: 0;
 	outline: none;
 }
 
 .pager-section::-webkit-scrollbar {
 	display: none;
+}
+
+@media (max-height: 760px) {
+	.pager-shell {
+		--pager-nav-gap: 10px;
+		--pager-bottom-gap: 8px;
+	}
 }
 
 @supports (overflow: clip) {

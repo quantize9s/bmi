@@ -205,6 +205,8 @@
 @media (max-width: 768px) {
 	:root {
 		--responsive-surface-max: 520px;
+		--responsive-flow-space: clamp(52px, 8svh, 80px);
+		--responsive-stack-space: clamp(28px, 5svh, 56px);
 	}
 
 	.main-container {
@@ -236,6 +238,8 @@
 @media (max-width: 600px) {
 	:root {
 		--responsive-surface-max: 420px;
+		--responsive-flow-space: clamp(36px, 6svh, 56px);
+		--responsive-stack-space: clamp(22px, 4svh, 40px);
 	}
 
 	/* Container: use safe gutters while surfaces stay capped above. */
@@ -365,14 +369,14 @@
 	.reference-table,
 	.about-bmi-grid,
 	.footer-disclaimer {
-		margin-top: 100px !important;
-		margin-bottom: 100px !important;
+		margin-top: var(--responsive-flow-space) !important;
+		margin-bottom: var(--responsive-flow-space) !important;
 	}
 
 	.bmi-card,
 	.goal-tracker,
 	.github-footer {
-		margin-bottom: 100px !important;
+		margin-bottom: var(--responsive-stack-space) !important;
 	}
 }
 

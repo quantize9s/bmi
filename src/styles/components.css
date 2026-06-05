@@ -201,9 +201,9 @@ button[aria-disabled='true'] {
 .hero-section {
 	text-align: center;
 	padding: 0;
-	margin: 1rem;
+	margin: clamp(0.75rem, 2.5vh, 1.5rem) 0;
 	position: relative;
-	min-height: 50vh;
+	min-height: clamp(420px, 56vh, 620px);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -216,10 +216,11 @@ button[aria-disabled='true'] {
 }
 
 .hero-content {
+	--hero-pad-x: clamp(1rem, 4vw, 2rem);
 	max-width: 800px;
 	margin: 0 auto;
-	margin-bottom: clamp(2rem, 12vh, 8rem) !important;
-	padding: 3rem 2rem;
+	margin-block: clamp(1.5rem, 6vh, 4rem) !important;
+	padding: clamp(1.5rem, 4vw, 3rem) var(--hero-pad-x) 0;
 	position: relative;
 	overflow: hidden;
 }
@@ -237,9 +238,9 @@ button[aria-disabled='true'] {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 1.5rem;
-	width: 108px;
-	height: 108px;
+	margin-bottom: clamp(1rem, 3vw, 1.5rem);
+	width: clamp(72px, 11vw, 108px);
+	height: clamp(72px, 11vw, 108px);
 	border-radius: var(--radius-pill);
 	padding: 0.6rem;
 	background: none;
@@ -256,9 +257,9 @@ button[aria-disabled='true'] {
 }
 
 .hero-title {
-	font-size: var(--text-hero);
+	font-size: clamp(2rem, 6vw, var(--text-hero));
 	font-weight: 700;
-	margin-bottom: 1rem;
+	margin-bottom: clamp(0.75rem, 2vw, 1rem);
 	line-height: 1.2;
 	position: relative;
 	display: flex;
@@ -272,19 +273,18 @@ button[aria-disabled='true'] {
 	border-top-left-radius: var(--container-radius);
 	border-top-right-radius: var(--container-radius);
 	border-top: var(--border-by-rezky);
-	padding: 0.75rem 0.5rem 1.5rem 0.5rem;
-	height: 65px;
-	margin-bottom: -30px;
-	max-width: 1200px;
-	margin-left: -30px;
-	margin-right: -30px;
+	padding: 0.9rem var(--hero-pad-x) clamp(1rem, 3vw, 1.25rem);
+	min-height: 64px;
+	height: auto;
+	margin: clamp(1rem, 3vw, 1.5rem) calc(var(--hero-pad-x) * -1) calc(var(--hero-pad-x) * -1);
+	max-width: none;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
 .hero-bottom-text {
-	font-size: var(--text-lg);
+	font-size: clamp(0.95rem, 2vw, var(--text-lg));
 	font-weight: 500;
 	text-align: center;
 	color: var(--text-muted);
@@ -299,22 +299,22 @@ button[aria-disabled='true'] {
 }
 
 .hero-subtitle {
-	font-size: var(--text-2xl);
+	font-size: clamp(1rem, 2.4vw, var(--text-2xl));
 	color: var(--stellar-white);
-	margin-bottom: 2rem;
+	margin-bottom: clamp(1.25rem, 3vw, 2rem);
 	line-height: 1.6;
 	max-width: 600px;
 	margin-left: auto;
 	margin-right: auto;
 	font-weight: 400;
-	padding: 1rem;
+	padding: 0 clamp(0rem, 2vw, 1rem);
 }
 
 .hero-features {
 	display: flex;
 	justify-content: center;
-	gap: 2rem;
-	margin-bottom: 2rem;
+	gap: clamp(0.75rem, 2vw, 2rem);
+	margin-bottom: clamp(1.25rem, 3vw, 2rem);
 	flex-wrap: wrap;
 }
 
@@ -323,9 +323,9 @@ button[aria-disabled='true'] {
 	align-items: center;
 	gap: 0.5rem;
 	color: var(--stellar-white);
-	font-size: 0.875rem;
+	font-size: clamp(0.78rem, 1.7vw, 0.875rem);
 	font-weight: 500;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem clamp(0.75rem, 2vw, 1rem);
 	background: transparent;
 	border-radius: var(--radius-pill);
 	border: var(--border-by-rezky);
@@ -344,6 +344,84 @@ button[aria-disabled='true'] {
 	background: var(--bg-cosmic);
 	color: var(--stellar-white);
 	background-clip: text;
+}
+
+@media (max-width: 768px) {
+	.hero-section {
+		min-height: clamp(360px, 52vh, 520px);
+	}
+
+	.hero-content {
+		padding-top: clamp(1.25rem, 5vw, 2rem);
+	}
+}
+
+@media (max-width: 600px) {
+	.hero-content {
+		--hero-pad-x: clamp(0.9rem, 4vw, 1.25rem);
+		margin-block: clamp(1rem, 4vh, 2.25rem) !important;
+	}
+
+	.hero-title {
+		gap: 0.5rem;
+	}
+
+	.hero-features {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.feature {
+		justify-content: center;
+		width: 100%;
+	}
+
+	.hero-bottom {
+		padding-top: 0.8rem;
+		padding-bottom: 1rem;
+	}
+}
+
+@media (max-height: 760px) {
+	.hero-section {
+		min-height: auto;
+	}
+
+	.hero-content {
+		margin-block: clamp(0.75rem, 3vh, 1.5rem) !important;
+		padding-top: clamp(1rem, 3vh, 1.5rem);
+	}
+
+	.hero-avatar {
+		width: clamp(64px, 10vw, 84px);
+		height: clamp(64px, 10vw, 84px);
+		margin-bottom: 0.85rem;
+	}
+
+	.hero-title {
+		font-size: clamp(1.9rem, 7vw, 3rem);
+	}
+
+	.hero-subtitle {
+		font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+		line-height: 1.45;
+		margin-bottom: 1rem;
+	}
+
+	.hero-features {
+		gap: 0.6rem;
+		margin-bottom: 1rem;
+	}
+
+	.feature {
+		padding: 0.45rem 0.75rem;
+	}
+
+	.hero-bottom {
+		margin-top: 0.85rem;
+		padding-top: 0.7rem;
+		padding-bottom: 0.85rem;
+	}
 }
 
 /* Note: @keyframes bounce/pulse removed — each component defines its own locally */
